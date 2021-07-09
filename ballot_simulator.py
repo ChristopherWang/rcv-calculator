@@ -19,7 +19,7 @@ column_names = ['choice_' + str(i+1) for i in range(num_candidates)]
 candidate_dist = [1/num_candidates] * num_candidates
 candidate_cumsum = np.cumsum(candidate_dist)
 
-# Randomly assign each voter (num_candidate) choices
+# Randomly assign (num_candidate) choices for each voter (duplicates can exist)
 sim_data = np.random.rand(num_voters, num_candidates)
 ## For each element of the sim data, map the random number to a candidate based on the given distribution
 sim_voter_choices = [[candidate_names[np.argmax(candidate_cumsum > sim_data[i, j])] for j in range(num_candidates)] for i in range(num_voters)]
@@ -43,9 +43,9 @@ for i in range(num_voters):
         else:
             voter_choice_set.add(curr_choice)
 
-# Create a data frame from the choice_list
+# Create a data frame from sim_voter_choices
 sim_election_data = pd.DataFrame(sim_voter_choices, columns = column_names)
-# Add voter_id as an index column
+# Add voter_id to be used as an index column
 sim_election_data.insert(0, 'voter_id', voter_names)
 
 # Export to CSV
