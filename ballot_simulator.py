@@ -10,13 +10,14 @@ num_voters = 100000
 voter_names = ['V' + str(i+1) for i in range(num_voters)]
 
 # Set number of candidates
-num_candidates = 10
+num_candidates = 5
 # Give dummy names for each candidate
 candidate_names = ['C' + str(i+1) for i in range(num_candidates)]
 # Set the column names
 column_names = ['choice_' + str(i+1) for i in range(num_candidates)]
 # Set distribution of candidates (uniform distribution is given)
-candidate_dist = [1/num_candidates] * num_candidates
+candidate_dist = [0.4, 0.1, 0.15, 0.15, 0.2]
+#candidate_dist = [1/num_candidates] * num_candidates
 candidate_cumsum = np.cumsum(candidate_dist)
 
 # Randomly assign (num_candidate) choices for each voter (duplicates can exist)
@@ -49,5 +50,5 @@ sim_election_data = pd.DataFrame(sim_voter_choices, columns = column_names)
 sim_election_data.insert(0, 'voter_id', voter_names)
 
 # Export to CSV
-sim_election_data.to_csv('ballots/sim_election_data.csv', 
+sim_election_data.to_csv('ballots/sim_election_data2.csv', 
                          index = False)
