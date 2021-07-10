@@ -5,9 +5,7 @@ import numpy as np
 import pandas as pd
 
 # Load specified ballot data
-ballot_data = pd.read_csv('ballots/sim_ballot.csv')
-# Rename the first column 
-ballot_data.columns.values[0] = "Voter Number"
+ballot_data = pd.read_csv('ballots/sim_election_data2.csv')
 
 # Create a tally dictionary to track the voter's choices
 candidate_vote_dict = {}
